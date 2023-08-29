@@ -1,0 +1,10 @@
+{
+  "OPENAI_API_KEY": "",
+  "PROMPTS": {
+    "TEXT": "Translate the provided passage from a Japanese light novel into English. Maintain the original literary style.",
+    "HTML": "Translate the provided passage from a Japanese light novel into English. Maintain the original literary style and keep HTML tags intact.",
+    "PASSTHROUGH": "Translate the provided passage from a Japanese light novel into English. Maintain the original literary style and keep HTML tags intact.",
+    "SENTENCE": "Translate the provided sentence from a Japanese light novel into English. Maintain the original literary style.",
+    "SENTENCE_HTML": "Translate the provided sentence from a Japanese light novel into English. Maintain the original literary style and keep HTML tags intact."
+  }
+}

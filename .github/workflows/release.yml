@@ -1,0 +1,60 @@
+name: Create and Upload Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  check-dist:
+    name: Create and Upload Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: npm
+
+      - name: Install Dependencies
+        id: install
+        run: npm ci
+
+      - name: Compile
+        id: build
+        run: npm run pkg
+
+      # From https://gist.github.com/superbrothers/af84a2f8af394a62352e06537a640746
+      - name: Create Release
+        id: create-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd ./dist/
+          mkdir ./epub-translator-windows/
+          mv ./epub-translator-win.exe ./epub-translator-windows/epub-translator-win.exe
+          mv ./epub-translator-linux ./epub-translator-linux.bak
+          mkdir ./epub-translator-linux/
+          mv ./epub-translator-linux.bak ./epub-translator-linux/epub-translator-linux
+          mkdir ./epub-translator-windows/input
+          mkdir ./epub-translator-windows/output
+          mkdir ./epub-translator-linux/input
+          mkdir ./epub-translator-linux/output
+          cp ../config.json ./epub-translator-windows/
+          cp ../config.json ./epub-translator-linux/
+          zip -r ./epub-translator-windows.zip ./epub-translator-windows/
+          zip -r ./epub-translator-linux.zip ./epub-translator-linux/
+          assets=()
+          for asset in ./*.zip; do
+            assets+=("-a" "$asset")
+          done
+          tag_name="${GITHUB_REF##*/}"
+          hub release create "${assets[@]}" -m "$tag_name" "$tag_name"

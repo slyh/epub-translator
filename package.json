@@ -1,0 +1,39 @@
+{
+  "name": "epub-translator",
+  "version": "0.1.0",
+  "license": "MIT",
+  "bin": "build/main.bundle.js",
+  "dependencies": {
+    "dom-serializer": "^2.0.0",
+    "domutils": "^3.1.0",
+    "htmlparser2": "^9.0.0",
+    "openai": "^4.3.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.1",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "eslint": "^8.48.0",
+    "pkg": "^5.8.1",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "pkg": {
+    "outputPath": "dist",
+    "scripts": [
+      "build/main.bundle.js"
+    ],
+    "targets": [
+      "node18-win-x64",
+      "node18-linux-x64"
+    ]
+  },
+  "scripts": {
+    "build": "npm run lint && tsc",
+    "lint": "eslint ./src",
+    "pkg": "npm run lint && webpack && pkg .",
+    "start": "tsc && node ./build/main.js"
+  }
+}
