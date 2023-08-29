@@ -202,7 +202,7 @@ function listRenderer(inputNode: Element, prefix = ""): string {
 }
 
 function elementCleanUp(inputNode: Element): Element {
-  const resultNode = structuredClone(inputNode);
+  const resultNode = inputNode;
 
   const children = Array.from(domutils.getChildren(resultNode));
 
