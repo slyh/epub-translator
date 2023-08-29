@@ -1,5 +1,7 @@
 epub-translator is a tool that translates EPUB files using large language models. It attempts to convert HTML codes into plain text, which is then sent to a LLM for translation.
 
+!["Kusamakura" by Natsume Sōseki, translated into English with gpt-3.5-turbo. Licensed under CC-BY-SA 3.0.](https://github.com/slyh/epub-translator/assets/80482978/1396be84-d53f-4f26-a0d3-7b8d672853de)
+
 ["Kusamakura" by Natsume Sōseki](https://github.com/IDPF/epub3-samples/releases/download/20230704/kusamakura-japanese-vertical-writing.epub), translated into English with `gpt-3.5-turbo`. Licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
 ## Getting Started
